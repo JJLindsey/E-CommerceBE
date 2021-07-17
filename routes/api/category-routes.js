@@ -32,17 +32,16 @@ router.get('/:id', (req, res) => {
     attributes: ['id', 'category_name'],
     include: [
       {
-        model: Product,
-        attributes: ['product_name']
+        model: Product
       }
     ]
   })
-    .then(dbPostData => {
-      if (!dbPostData) {
+    .then(dbCategoryData => {
+      if (!dbCategoryData) {
         res.status(404).json({ message: 'No category found with this id' });
         return;
       }
-      res.json(dbPostData);
+      res.json(dbCategoryData);
     })
     .catch(err => {
       console.log(err);
