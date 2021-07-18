@@ -19,6 +19,7 @@ router.get('/', (req, res) => {
   })
   .then(dbProduct => res.json(dbProduct))
   .catch(err => {
+    console.log(err);
     res.status(500).json(err);
   })
 });
@@ -50,7 +51,8 @@ router.get('/:id', (req, res) => {
     res.json(dbProduct)
   })
   .catch(err => {
-    res.status(500).json(err)
+    console.log(err);
+    res.status(500).json(err);
   })
 });
 
@@ -64,10 +66,15 @@ router.post('/', (req, res) => {
       tagIds: [1, 2, 3, 4]
     }
   */
-  Product.create(req.body)
+  Product.create({
+    product_name: req.body.product,
+    price: req.body.price,
+    stock: req.body.stock,
+    tagIds: req.body.tagIds
+  })
     .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
-      if (req.body.tagIds.length) {
+      if (req.body.tagIds.length)
         const productTagIdArr = req.body.tagIds.map((tag_id) => {
           return {
             product_id: product.id,
@@ -75,7 +82,7 @@ router.post('/', (req, res) => {
           };
         });
         return ProductTag.bulkCreate(productTagIdArr);
-      }
+      });
       // if no product tags, just respond
       res.status(200).json(product);
     })
@@ -83,7 +90,6 @@ router.post('/', (req, res) => {
     .catch((err) => {
       console.log(err);
       res.status(400).json(err);
-    });
 });
 
 // update product
@@ -94,7 +100,7 @@ router.put('/:id', (req, res) => {
       id: req.params.id,
     },
   })
-    .then((product) => {
+    .then((ProductTag) => {
       // find all associated tags from ProductTag
       return ProductTag.findAll({ where: { product_id: req.params.id } });
     })

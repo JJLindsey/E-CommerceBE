@@ -14,7 +14,9 @@ router.get('/', (req, res) => {
     ]
   })
   .then(dbTag => res.json(dbTag))
-  .catch(err => res.status(400).json(err))
+  .catch(err => res.status(400).json(err));
+    console.log(err);
+    res.status(500).json(err);
 });
 
 router.get('/:id', (req, res) => {
@@ -37,7 +39,11 @@ router.get('/:id', (req, res) => {
     }
     res.json(dbTag)
   })
-  .catch(err => res.status(500).json(err))
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+
 });
 
 router.post('/', (req, res) => {
@@ -46,7 +52,10 @@ router.post('/', (req, res) => {
     tag_name: req.body.tag_name
   })
   .then(dbTag => res.json(dbTag))
-  .catch(err => res.status(400).json(err))
+  .catch(err => {
+    console.log(err);
+    res.status(400).json(err)
+  });
 });
 
 router.put('/:id', (req, res) => {
@@ -61,9 +70,12 @@ router.put('/:id', (req, res) => {
       res.status(400).json({ message: 'Tag not found!'})
       return;
     }
-    res.json(dbTag)
-    .catch(err => res.status(400).json(err))
+    res.json(dbTag); 
   })
+  .catch(err => {
+    console.log(err);
+    res.status(400).json(err)
+  });
 });
 
 router.delete('/:id', (req, res) => {
@@ -79,8 +91,11 @@ router.delete('/:id', (req, res) => {
       return;
     }
     res.json(dbTag)
-    .catch(err => res.status(400).json(err))
   })
+  .catch(err =>  {
+    console.log(err);
+    res.status(400).json(err)
+  });
 });
 
 module.exports = router;
