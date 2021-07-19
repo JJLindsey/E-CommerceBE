@@ -11,7 +11,6 @@ This is a Back End application for e-commerce using Sequelize to interact with M
 * [Badges](#Badges)
 * [Questions](#questions)
 
-<img src="" height=200>
 
 ### **Installation**
 npm
@@ -21,7 +20,6 @@ espress
 ### **Usage**
 ⏯
 
-<img src="" height= 250 target>
 
 
 ### **Technologies Used:**
