@@ -9,14 +9,17 @@ router.get('/', (req, res) => {
   Tag.findAll({
     include: [
       {
-        model: Product
+        model: Product,
+        through: ProductTag
       }
     ]
   })
   .then(dbTag => res.json(dbTag))
-  .catch(err => res.status(400).json(err));
+  .catch(err => { 
+    res.status(400).json(err);
     console.log(err);
     res.status(500).json(err);
+  })
 });
 
 router.get('/:id', (req, res) => {
