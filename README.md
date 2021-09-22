@@ -13,14 +13,12 @@ This is a Back End application for e-commerce using Sequelize to interact with M
 
 
 ### **Installation**
-npm
-inquirer
-espress
+npm i inquirer express
 
 ### **Usage**
-⏯
+⏯ [walkthrough video link](https://drive.google.com/file/d/1AGjQSJgmy9ToN2rP-ragsPQMNiid-J8N/view?usp=sharing)
 
-
+<img src='e-commBE.png' alt='screen shot' height=300>
 
 ### **Technologies Used:**
 * Node.js
